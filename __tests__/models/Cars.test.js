@@ -41,4 +41,12 @@ describe("Cars 클래스 테스트", () => {
       expect(p).toEqual(expectedPos[idx]);
     });
   });
+
+  test("자동차 이름은 중복될 수 없다.", () => {
+    // given
+    const names = ["자동차1", "자동차1", "자동차2"];
+
+    // when & then
+    expect(new Cars(names)).toThrow("[ERROR]");
+  });
 });
