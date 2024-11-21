@@ -12,7 +12,7 @@ class CarNameValidator {
   }
 
   static #validateType(carNames) {
-    if (carNames.some((name) => !/^[가-힣]+$/.test(name))) {
+    if (carNames.some((name) => typeof name === "string")) {
       throw new Error("[ERROR] 자동차 이름은 문자여야 합니다.");
     }
   }
