@@ -1,6 +1,7 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import Cars from "../../src/models/Cars";
 import RaceStrategy from "../../src/models/RaceStrategy";
+import Winner from "../../src/models/Winner";
 
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
@@ -26,9 +27,9 @@ describe("Winner 클래스 테스트", () => {
       cars.race();
     });
 
-    const winners = Winner.from(cars.getCars());
+    const winner = Winner.from(cars.getCars());
 
     // then
-    expect(winners[0]).toEqual(winnerName);
+    expect(winner.getWinners()[0]).toEqual(winnerName);
   });
 });
