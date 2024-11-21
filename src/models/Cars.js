@@ -1,11 +1,12 @@
-import { Random } from "@woowacourse/mission-utils";
 import Car from "./Car";
 
 class Cars {
   #cars;
+  #raceStrategy;
 
-  constructor(names) {
+  constructor(names, raceStrategy) {
     this.#validate(names);
+    this.#raceStrategy = raceStrategy;
     this.#cars = names.map((name) => new Car(name));
   }
 
@@ -13,7 +14,7 @@ class Cars {
     const position = [];
 
     this.#cars.forEach((car) => {
-      if (Random.pickNumberInRange(0, 9) >= 4) {
+      if (this.#raceStrategy.canMove()) {
         car.move(1);
         position.push(car.getPosition());
       }
