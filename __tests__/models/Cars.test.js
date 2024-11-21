@@ -47,6 +47,6 @@ describe("Cars 클래스 테스트", () => {
     const names = ["자동차1", "자동차1", "자동차2"];
 
     // when & then
-    expect(new Cars(names)).toThrow("[ERROR]");
+    expect(() => new Cars(names)).toThrow("[ERROR]");
   });
 });

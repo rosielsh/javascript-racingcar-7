@@ -5,6 +5,7 @@ class Cars {
   #cars;
 
   constructor(names) {
+    this.#validate(names);
     this.#cars = names.map((name) => new Car(name));
   }
 
@@ -19,6 +20,14 @@ class Cars {
     });
 
     return position;
+  }
+
+  #validate(names) {
+    const set = new Set(names);
+
+    if (names.length !== set.size) {
+      throw new Error("[ERROR]");
+    }
   }
 }
 
