@@ -23,6 +23,10 @@ class Cars {
     return position;
   }
 
+  getCars() {
+    return this.#cars;
+  }
+
   #validate(names) {
     const set = new Set(names);
 

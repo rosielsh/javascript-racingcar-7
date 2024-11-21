@@ -20,6 +20,10 @@ class Car {
     return this.#position;
   }
 
+  getName() {
+    return this.#name;
+  }
+
   #validate(name) {
     if (name.length <= 0 || name.length >= 5) {
       throw new Error("[ERROR]");
