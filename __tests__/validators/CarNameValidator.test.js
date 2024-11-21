@@ -6,7 +6,7 @@ describe("CarValidator 클래스 테스트", () => {
     const carNames = ["자동차차차차", "자동차"];
 
     // when & then
-    expect(CarNameValidator.validate(carNames)).toThrow("[ERROR]");
+    expect(() => CarNameValidator.validate(carNames)).toThrow("[ERROR]");
   });
 
   test("자동차 이름은 중복될 수 없다", () => {
@@ -14,7 +14,7 @@ describe("CarValidator 클래스 테스트", () => {
     const carNames = ["자동차", "자동차"];
 
     // when & then
-    expect(CarNameValidator.validate(carNames)).toThrow("[ERROR]");
+    expect(() => CarNameValidator.validate(carNames)).toThrow("[ERROR]");
   });
 
   test("자동차 이름은 문자여야 한다.", () => {
@@ -22,6 +22,6 @@ describe("CarValidator 클래스 테스트", () => {
     const carNames = ["자동차차차차", "자동차"];
 
     // when & then
-    expect(CarNameValidator.validate(carNames)).toThrow("[ERROR]");
+    expect(() => CarNameValidator.validate(carNames)).toThrow("[ERROR]");
   });
 });
