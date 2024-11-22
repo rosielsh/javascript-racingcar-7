@@ -32,7 +32,7 @@ class Cars {
     const set = new Set(names);
 
     if (names.length !== set.size) {
-      throw new Error("[ERROR]");
+      throw new Error("[ERROR] 중복된 자동차를 입력할 수 없습니다.");
     }
   }
 }
