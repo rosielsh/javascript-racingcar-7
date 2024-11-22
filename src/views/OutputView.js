@@ -1,10 +1,14 @@
-class OutputView {
-  static printRaceResult(carNames, positions) {
-    Console.print("실행 결과\n");
+import { Console } from "@woowacourse/mission-utils";
 
+class OutputView {
+  static printResultText() {
+    Console.print("\n실행 결과");
+  }
+
+  static printRaceResult(currentRaceInfo) {
     let logs = [];
-    carNames.forEach((carName, idx) => {
-      logs.push(`${carName} : ${"-".repeat(positions[idx])}`);
+    currentRaceInfo.forEach(([carName, curPosition]) => {
+      logs.push(`${carName} : ${"-".repeat(curPosition)}`);
     });
 
     Console.print(logs.join("\n"));
