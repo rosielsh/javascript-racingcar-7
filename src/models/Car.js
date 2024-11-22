@@ -1,3 +1,7 @@
+import MESSAGE from "../constants/Message.js";
+import SETTING from "../constants/Setting.js";
+import { generateError } from "../utils/generateError.js";
+
 class Car {
   #name;
   #position;
@@ -5,12 +9,12 @@ class Car {
   constructor(name) {
     this.#validate(name);
     this.#name = name;
-    this.#position = 0;
+    this.#position = SETTING.CAR.INITIAL_POSITION;
   }
 
   move(position) {
-    if (this.#position + position < 0) {
-      throw new Error("[ERROR] 자동차는 음의 방향으로 이동할 수 없습니다.");
+    if (this.#position + position < SETTING.CAR.INITIAL_POSITION) {
+      generateError(MESSAGE.ERROR.CAR.INVALID_MOVE);
     }
 
     this.#position += position;
@@ -25,8 +29,8 @@ class Car {
   }
 
   #validate(name) {
-    if (name.length <= 0 || name.length >= 5) {
-      throw new Error("[ERROR] 자동차 이름은 5자 이하로 입력 가능합니다.");
+    if (name.length < SETTING.CAR.MIN_NAME_LENGTH || name.length > SETTING.CAR.MAX_NAME_LENGTH) {
+      generateError(MESSAGE.ERROR.CAR.INVALID_LENGTH);
     }
   }
 }

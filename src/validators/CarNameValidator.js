@@ -1,3 +1,6 @@
+import MESSAGE from "../constants/Message.js";
+import { generateError } from "../utils/generateError.js";
+
 class CarNameValidator {
   static validate(carNames) {
     this.#validateIsArray(carNames);
@@ -8,25 +11,25 @@ class CarNameValidator {
 
   static #validateIsArray(carNames) {
     if (!Array.isArray(carNames)) {
-      throw new Error("[ERROR] 자동차 이름이 유효하지 않습니다.");
+      generateError(MESSAGE.ERROR.CAR_NAME.NOT_ARRAY);
     }
   }
 
   static #validateType(carNames) {
     if (!carNames.every((name) => typeof name === "string")) {
-      throw new Error("[ERROR] 자동차 이름은 문자여야 합니다.");
+      generateError(MESSAGE.ERROR.CAR_NAME.INVALID_TYPE);
     }
   }
 
   static #validateLength(carNames) {
     if (carNames.some((name) => name.length > 5)) {
-      throw new Error("[ERROR] 자동차 이름은 5자 이하여야 합니다.");
+      generateError(MESSAGE.ERROR.CAR_NAME.INVALID_LENGTH);
     }
   }
 
   static #validateDuplicate(carNames) {
     if (new Set(carNames).size !== carNames.length) {
-      throw new Error("[ERROR] 중복된 자동차 이름이 존재합니다.");
+      generateError(MESSAGE.ERROR.CAR.DUPLICATE_CAR);
     }
   }
 }

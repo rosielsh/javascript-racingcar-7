@@ -1,3 +1,6 @@
+import MESSAGE from "../constants/Message.js";
+import SETTING from "../constants/Setting.js";
+import { generateError } from "../utils/generateError.js";
 import Car from "./Car.js";
 
 class Cars {
@@ -15,7 +18,7 @@ class Cars {
 
     this.#cars.forEach((car) => {
       if (this.#raceStrategy.canMove()) {
-        car.move(1);
+        car.move(SETTING.MOVE.UNIT);
       }
 
       currentRaceInfo.push([car.getName(), car.getPosition()]);
@@ -32,7 +35,7 @@ class Cars {
     const set = new Set(names);
 
     if (names.length !== set.size) {
-      throw new Error("[ERROR] 중복된 자동차를 입력할 수 없습니다.");
+      generateError(MESSAGE.ERROR.CAR.DUPLICATE_CAR);
     }
   }
 }
