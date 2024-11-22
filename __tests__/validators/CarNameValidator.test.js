@@ -19,7 +19,7 @@ describe("CarValidator 클래스 테스트", () => {
 
   test("자동차 이름은 문자여야 한다.", () => {
     // given
-    const carNames = ["자동차@", "자동차ab"];
+    const carNames = [NaN, undefined, {}, [], null];
 
     // when & then
     expect(() => CarNameValidator.validate(carNames)).toThrow("[ERROR]");
