@@ -17,10 +17,7 @@ class Cars {
     const currentRaceInfo = [];
 
     this.#cars.forEach((car) => {
-      if (this.#raceStrategy.canMove()) {
-        car.move(SETTING.MOVE.UNIT);
-      }
-
+      this.#move(car);
       currentRaceInfo.push([car.getName(), car.getPosition()]);
     });
 
@@ -29,6 +26,12 @@ class Cars {
 
   getCars() {
     return this.#cars;
+  }
+
+  #move(car) {
+    if (this.#raceStrategy.canMove()) {
+      car.move(SETTING.MOVE.UNIT);
+    }
   }
 
   #validate(names) {
