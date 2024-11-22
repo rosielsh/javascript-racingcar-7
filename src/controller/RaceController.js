@@ -5,10 +5,17 @@ import InputParser from "../parser/InputParser.js";
 import Converter from "../utils/Converter.js";
 import CarNameValidator from "../validators/CarNameValidator.js";
 import TryCountValidator from "../validators/TryCountValidator.js";
-import InputView from "../views/InputView.js";
 import OutputView from "../views/OutputView.js";
 
 class RaceController {
+  #inputView;
+  #outputView;
+
+  constructor({ inputView, outputView }) {
+    this.#inputView = inputView;
+    this.#outputView = outputView;
+  }
+
   async race() {
     const carNames = await this.#getCarNames();
     const tryCount = await this.#getTryCount();
@@ -18,7 +25,7 @@ class RaceController {
   }
 
   async #getCarNames() {
-    const carNames = await InputView.readCarNames();
+    const carNames = await this.#inputView.readCarNames();
     const parsedCarNames = InputParser.parseCarNames(carNames);
     CarNameValidator.validate(parsedCarNames);
 
@@ -26,7 +33,7 @@ class RaceController {
   }
 
   async #getTryCount() {
-    const tryCount = await InputView.readTryCount();
+    const tryCount = await this.#inputView.readTryCount();
     const convertedTryCount = Converter.convertTryCountStringToNumber(tryCount);
     TryCountValidator.validate(convertedTryCount);
     return convertedTryCount;
@@ -37,7 +44,7 @@ class RaceController {
     OutputView.printResultText();
     Array.from({ length: tryCount }).forEach(() => {
       const currentRaceInfo = cars.race();
-      OutputView.printRaceResult(currentRaceInfo);
+      this.#outputView.printRaceResult(currentRaceInfo);
     });
 
     return cars;
@@ -45,7 +52,7 @@ class RaceController {
 
   async #calculateWinner(cars) {
     const winner = Winner.from(cars.getCars());
-    OutputView.printWinners(winner.getWinners());
+    this.#outputView.printWinners(winner.getWinners());
   }
 }
 
