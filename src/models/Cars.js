@@ -1,4 +1,4 @@
-import Car from "./Car";
+import Car from "./Car.js";
 
 class Cars {
   #cars;
@@ -11,16 +11,17 @@ class Cars {
   }
 
   race() {
-    const position = [];
+    const currentRaceInfo = [];
 
     this.#cars.forEach((car) => {
       if (this.#raceStrategy.canMove()) {
         car.move(1);
-        position.push(car.getPosition());
       }
+
+      currentRaceInfo.push([car.getName(), car.getPosition()]);
     });
 
-    return position;
+    return currentRaceInfo;
   }
 
   getCars() {
